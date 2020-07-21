@@ -1,1 +1,1 @@
-# record
+锻炼写bolg，keep going !
