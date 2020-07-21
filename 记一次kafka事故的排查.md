@@ -22,7 +22,7 @@
 
 7，查了下关于消息未被消费的情况，可能原因：a,磁盘满了未发送成功;b,同个topic被多台机器消费者监听，已经被其他人消费了；c,某次消费失败导致线程被占用一直阻塞，无法消费其他消息；d,consumer监听的不对或者说是consumer的参数配置不对
 
-> 排查ab：非生产环境，且是晚上，于是将本地的kafka集群暂停改为一台，删除topic（注意要彻底删除，先delete删除topic，再删除zk节点 rmr /brokers/topics/XX，再ls查看是否彻底删除），重启之后依然消息无法被消费
+> 排查ab：非生产环境，且是晚上，于是将本地的kafka集群暂停改为一台，删除topic（注意要彻底删除，先删除存储目录（查看server.properties里面的log.dirs），delete删除topic，再删除zk节点 rmr /brokers/topics/XX，再ls查看是否彻底删除），重启之后依然消息无法被消费
 >
 > 排查d：zk节点下查看get /brokers/ids/，可以看到各项参数如endpoints,version,port等参数正常
 >
